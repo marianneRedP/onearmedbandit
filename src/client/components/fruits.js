@@ -3,7 +3,6 @@ import _ from 'lodash';
 import Fruit from './fruit';
 
 const Fruits = ({ fruits, onLoadFruits }) => {
-  console.log('----------', fruits);
   const data = _.map(fruits, (fruit, id) => (
     <Fruit
       color={ fruit.color }

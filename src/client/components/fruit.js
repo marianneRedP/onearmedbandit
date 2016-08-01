@@ -1,9 +1,7 @@
 import React from 'react';
 
 const Fruit = ({ color, icon }) => { 
-  console.log('--color = ', color);
-  console.log('--icon = ', icon);
-
+  
   const img = `fa fa-${icon} fa-5x ${icon == 'spinner' ? 'fa-spin' : ''}`;
   const style = { color };
 

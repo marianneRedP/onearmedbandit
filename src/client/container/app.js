@@ -1,18 +1,34 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Fruit from '../components/fruit';
+import Fruits from '../components/fruits';
+import Title from '../components/title';
 import { loadFruits } from '../actions';
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+  };
+
+  onLoadFruits = () => {
+    this.props.dispatch(loadFruits());
+  };
 
   render() {
+    console.log('APP');
     return (
       <div className='App'>
-      <Fruit />
-     
+        <Title />
+        <Fruits
+          fruits={ this.props.fruits }
+          onLoadFruits={ this.onLoadFruits } />
       </div>
     );
   }
+}
+
+App.propTypes = {
+  dispatch: React.PropTypes.func.isRequired,
+  fruits: React.PropTypes.object.isRequired,
 };
 
-export default connect()(App);
+export default connect(state => ({ fruits: state }))(App);

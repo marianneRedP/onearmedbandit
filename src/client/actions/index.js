@@ -34,34 +34,38 @@ const icons = [
   'truck',
   ];
 
-const color = colors[Math.floor(Math.random() * colors.length)];
-const icon = icons[Math.floor(Math.random() * icons.length)];
+const random = (size) => Math.floor(Math.random() * size);
 
-export const getFruits = () => ({
+export const getFruits = (color, icon, id) => ({
   type: GET_FRUITS,
-  fruits
+    color,
+    icon,
+    id,
 });
 
 const loadFruit = (id) => {
-  return new Promise(resolve => {
-    const fruit = [
+  const fruit = [
+      icons[random(13)],
+      colors[random(14)],
       id,
-      icon,
-      color,
       ];  
+  return new Promise(resolve => {
+    setTimeout(() => resolve(fruit), 20000);
   });
 };
 
 export const loadFruits = () => {
-  Promise.all([
-    loadFruit(0),
-    loadFruit(1),
-    loadFruit(2),
-    loadFruit(3),
-    loadFruit(4)
+   console.log('loadFruits');
+   return (dispatch) => {
+    Promise.all([
+      loadFruit(0),
+      loadFruit(1),
+      loadFruit(2),
+      loadFruit(3),
+      loadFruit(4),
     ])
-  .then((fruit) => dispatch(getFruit(...fruit)));
+    .then(fruits => fruits.forEach((fruit) => dispatch(getFruits(...fruit))));
+  };
 };
-
 
 

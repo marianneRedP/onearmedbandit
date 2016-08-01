@@ -21,7 +21,8 @@ const icons = [
   'ambulance',
   'automobile',
   'bicycle',
-  'bus', 'cab',
+  'bus', 
+  'cab',
   'car',
   'fighter-jet',
   'motorcycle',
@@ -45,8 +46,8 @@ export const getFruits = (color, icon, id) => ({
 
 const loadFruit = (id) => {
   const fruit = [
-      icons[random(13)],
-      colors[random(14)],
+      colors[random(13)],
+      icons[random(14)],
       id,
       ];  
   return new Promise(resolve => {

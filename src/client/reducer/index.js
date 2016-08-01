@@ -1,7 +1,7 @@
 import { GET_FRUITS } from '../actions';
 import { combineReducers } from 'redux';
 
-const fruits = (state = [], action) => {
+const fruits = (state = {}, action) => {
   switch(action.type) {
   case GET_FRUITS:
     return {

@@ -31,4 +31,4 @@ App.propTypes = {
   fruits: React.PropTypes.object.isRequired,
 };
 
-export default connect(state => ({ fruits: state }))(App);
+export default connect(state => ({ fruits: state.fruits }))(App);

@@ -11,7 +11,7 @@ const Fruits = ({ fruits, onLoadFruits }) => {
       key={ id }
     />)
   );
-
+// onLoadFruits pas appelé au bon moment
   const handleFruit = () => {
     onLoadFruits();
   }
@@ -19,7 +19,6 @@ const Fruits = ({ fruits, onLoadFruits }) => {
   return (
     <div className='Fruits'>
       <form onSubmit={ handleFruit() } >
-        <input type='text' />
       </form>
       { data }
     </div>

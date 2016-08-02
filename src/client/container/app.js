@@ -10,7 +10,7 @@ class App extends React.Component {
   componentWillMount() {
     store.rollFruits();
     store.on(fruits => this.setState({ fruits }));
-    store.onEnd();
+  //  store.onEnd(fruits => this.setState({ fruits }));
   };
 
   render() {

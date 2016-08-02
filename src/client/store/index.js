@@ -29,6 +29,7 @@ const icons = [
   'car',
   'fighter-jet',
   'motorcycle',
+  'paper-plane',
   'plane',
   'rocket',
   'ship',
@@ -47,7 +48,7 @@ const getAllFruits = (nb) => _.times(nb, fruitFactory);
 const fruits = getAllFruits(5);
 
 const combinedFruits = flyd.combine(
-  (...params) => _.map(params_.slice(0, -2), fruit => fruit()),
+  (...params) => _.map(params.slice(0, -2), fruit => fruit()),
   fruits
   );
 
@@ -56,14 +57,17 @@ const on = (func) => {
 };
 
 const rollFruit = (fruit) => {
+  console.log('rollFruit');
   setTimeout(
     () => {
-      const color = colors[random(13)];
-      const icon = icons[random(14)];
+      const color = colors[random(colors.length - 1)];
+      const icon = icons[random(icons.length - 1)];
       const id = fruit().id;
       fruit({ color, icon, id });
       if (icon !== 'paper-plane')
         rollFruit(fruit);
+      else
+        fruit.end(true);
     },
     200
   );
@@ -73,26 +77,23 @@ const rollFruits = () => {
   return _.forEach(fruits, rollFruit); 
 };
 
-const checkIcon = (fruit) => { 
-  return fruit === 'paper-plane' ? true : false;
-};
+// END 
+const checkFruit = (fruit) => fruit.icon === 'paper-plane';
 
 const endsStream = (fruit) => {
-  if (checkIcon(fruit))
-    fruit.end(true);
-}
+  console.log('END');
+  fruit.end(checkFruit(fruit));
+};
 
 const endsAllStreams = flyd.combine(
-  (...params) => _.map(params_.slice(0, -2), fruit => endsStream(fruit)),
-  fruits
+  (...params) => _.map(params.slice(0, -2), fruit => endsStream(fruit)),
+  combinedFruits
 );
 
-const killer = flyd.stream();
+const onEnd = (func) => {
+  flyd.on(func, endsAllStreams);
+};
 
-const onEnd = () => {
-  console.log('onEnd');
-  flyd.endsOn(flyd.merge(endsStream.end, killer), endsStream);
-}
 export default { on, rollFruits, onEnd };
 
 

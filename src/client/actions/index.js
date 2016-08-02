@@ -51,7 +51,7 @@ const loadFruit = (id) => {
       id,
       ];  
   return new Promise(resolve => {
-    setTimeout(() => resolve(fruit), 20000);
+    setTimeout(() => resolve(fruit), 3000);
   });
 };
 

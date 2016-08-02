@@ -6,13 +6,14 @@ import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import App from './container/app';
 import reducer from './reducer';
+import { loadFruits } from './actions';
 
 const store = createStore(
   reducer,
   applyMiddleware(thunkMiddleware, createLogger()),
 );
 
-console.log('STATE = ', store.getState());
+store.dispatch(loadFruits());
 
 ReactDom.render(
     <Provider store={ store }>

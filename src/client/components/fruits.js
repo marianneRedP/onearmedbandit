@@ -2,7 +2,7 @@ import React from 'react';
 import _ from 'lodash';
 import Fruit from './fruit';
 
-const Fruits = ({ fruits, onLoadFruits }) => {
+const Fruits = ({ fruits }) => {
   const data = _.map(fruits, (fruit, id) => (
     <Fruit
       color={ fruit.color }
@@ -10,15 +10,9 @@ const Fruits = ({ fruits, onLoadFruits }) => {
       key={ id }
     />)
   );
-// onLoadFruits pas appelé au bon moment
-  const handleFruit = () => {
-    onLoadFruits();
-  }
 
   return (
     <div className='Fruits'>
-      <form onSubmit={ handleFruit() } >
-      </form>
       { data }
     </div>
   );
@@ -26,7 +20,6 @@ const Fruits = ({ fruits, onLoadFruits }) => {
 
 Fruits.propTypes = {
   fruits: React.PropTypes.object.isRequired,
-  onLoadFruits: React.PropTypes.func.isRequired,
 };
 
 export default Fruits;

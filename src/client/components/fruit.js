@@ -1,20 +1,16 @@
 import React from 'react';
 
-const Fruit = ({ color, icon }) => { 
-  
-  const img = `fa fa-${icon} fa-5x ${icon == 'spinner' ? 'fa-spin' : ''}`;
-  const style = { color };
+class Fruit extends React.Component { 
 
-  return (
-    <div className='fruit'>
-      <span className={ img } style={ style }/>
-    </div>
-  );
-};
-
-Fruit.propTypes = {
-  color: React.PropTypes.string.isRequired,
-  icon: React.PropTypes.string.isRequired,
+  render() {
+    const style = { color: this.props.color };
+    const img = `fa fa-${this.props.icon} fa-5x`;
+    return (
+      <div className='fruit'>
+        <span className={ img } style={ style }/>
+      </div>
+    );
+  };
 };
 
 export default Fruit;

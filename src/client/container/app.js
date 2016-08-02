@@ -1,33 +1,27 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import Fruits from '../components/fruits';
+import store from '../store';
 import Title from '../components/title';
-import { loadFruits } from '../actions';
+import Fruits from '../components/fruits';
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-  };
 
-  onLoadFruits = () => {
-    this.props.dispatch(loadFruits());
+  state = { fruits: { 0: { id: 0, color: 'black', icon: 'ambulance' }  } };
+
+  componentWillMount() {
+    store.rollFruits();
+    store.on(fruits => this.setState({ fruits }));
+    store.onEnd();
   };
 
   render() {
     return (
       <div className='App'>
         <Title />
-        <Fruits
-          fruits={ this.props.fruits }
-          onLoadFruits={ this.onLoadFruits } />
+        <Fruits fruits={ this.state.fruits }  />
       </div>
-    );
+    )
   }
-}
-
-App.propTypes = {
-  dispatch: React.PropTypes.func.isRequired,
-  fruits: React.PropTypes.object.isRequired,
 };
 
-export default connect(state => ({ fruits: state.fruits }))(App);
+export default App;
+

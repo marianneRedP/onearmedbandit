@@ -1,6 +1,7 @@
 import React from 'react';
-import _ from 'lodash';
+import _ from 'lodash'
 import Fruit from './fruit';
+
 
 const Fruits = ({ fruits }) => {
   const data = _.map(fruits, (fruit, id) => (
@@ -10,7 +11,6 @@ const Fruits = ({ fruits }) => {
       key={ id }
     />)
   );
-
   return (
     <div className='Fruits'>
       { data }
@@ -19,7 +19,7 @@ const Fruits = ({ fruits }) => {
 };
 
 Fruits.propTypes = {
-  fruits: React.PropTypes.object.isRequired,
+  fruits: React.PropTypes.array.isRequired,
 };
 
 export default Fruits;
